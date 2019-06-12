@@ -1,22 +1,18 @@
 
-# Section Recap
+# Transfer Learning - Recap
 
 ## Introduction
 
-This short lesson summarizes key takeaways from section 44.
+In this section you learned how you can adapt pretrained models to improve the performance of neural networks when limited training data is available. While you specifically investigated CNNs and the VGG-19 model, these concepts are also applicable to other domains as well. For example, GloVe (Global Vectors for Word Representation) is a pretrained model which can be useful in a variety of natural language processing tasks.
 
 ## Objectives
 You will be able to:
-* Understand and explain what was covered in this section
-* Understand and explain why this section will help you become a data scientist
+* Recall key takeaway regarding transfer learning
 
-## Key Takeaways
+Remember that the general process for transfer learning begins by taking a pretrained model like VGG-19 and freezing the weights so that they remain constant. From there, you can then append a standard densely connected classifier to perform the task at hand. In essence, the pretrained model acts as a form of feature engineering applied to the underlying dataset. 
 
-The key takeaways from this section include:
+After the classifier is trained with the frozen pretrained model, a few of the top layers from the pretrained model can be unfrozen for fine tuning. Remember that you should only do this after training the classifier on top of the fully frozen model. Unfreezing parts of the pretrained model earlier is prone to overwriting any useful feature weights encoded in the pretrained model as there will be large gradients in forward and backward propagation passes until the densely connected layers converge to a stable solution. Also remember that little is to be gained by unfreezing more then a few of the top layers from a pretrained model. Base layers of models such as VGG-19 will pick up very granular features such as colors or edges in image recognition. As such, these base layers are typically well formulated features across many domains. Unfreezing top layers has far more impact on tuning as these final layers often pick up domain specific features, so when adapting a model to a new problem domain such as predicting flower species instead of predicting animal kingdoms, these top layers can often be more impactful if retrained to the specific application.
 
-* Convolutional bases or pretrained networks are particularly useful when your data at hand is limited
-* In general, the first few layers of convolutional bases detect very general features such as edges, therefore, pretrained networks can be used on completely different classes of images they were originally trained on
-* Two ways of using convolutional bases include: feature extraction and fine-tuning
-* Feature extraction involves using a pretrained network, running new data through it, and training a _new_ classifier on top of that
-* fine-tuning involves "unfreezing" a few top layers from the model and training them again together with the densely connected classifier
-* Several convolutional bases are available in Keras, and you learned how to perform both feature extraction and fine-tuning
+## Summary
+
+In this lesson, you got a brief review of transfer learning and how to adapt pretrained models. From here, you'll continue to learn about other neural network architectures and build upon your growing deep learning knowledge.
